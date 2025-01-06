@@ -1,8 +1,6 @@
+import { useEffect, useState } from 'react'
+import LearningPathCard from '../components/LearningPathCard'
+
 export default function Home() {
-  return (
-    <main>
-      <h1>Welcome to Learning Platform</h1>
-      <p>Explore learning paths and track your progress</p>
-    </main>
-  )
+  // ... existing code
 }

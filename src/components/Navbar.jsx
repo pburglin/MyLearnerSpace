@@ -15,6 +15,12 @@ export default function Navbar({ toggleTheme, user, logout }) {
           </Link>
           {user ? (
             <>
+              <Link to="/dashboard" title="Your dashboard">
+                📊 Dashboard
+              </Link>
+              <Link to="/author-dashboard" title="Author dashboard">
+                ✍️ Author Dashboard
+              </Link>
               <Link to="/create-path" title="Create new learning path">
                 ➕ Create Path
               </Link>

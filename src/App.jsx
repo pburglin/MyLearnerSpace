@@ -8,15 +8,25 @@ import Navbar from './components/Navbar'
 import Leaderboard from './components/Leaderboard'
 import PathDetail from './pages/PathDetail'
 import Search from './components/Search'
+import LearnerDashboard from './pages/LearnerDashboard'
+import AuthorDashboard from './components/AuthorDashboard'
 import { useAuth } from './hooks/useAuth'
 
 export default function App() {
-  const [theme, setTheme] = useState('light')
-  const { user, logout } = useAuth()
+  const [theme, setTheme] = useState(() => {
+    // Get theme from localStorage or default to 'light'
+    return localStorage.getItem('theme') || 'light'
+  })
 
   const toggleTheme = () => {
-    setTheme(prev => prev === 'light' ? 'dark' : 'light')
+    setTheme(prev => {
+      const newTheme = prev === 'light' ? 'dark' : 'light'
+      localStorage.setItem('theme', newTheme)
+      return newTheme
+    })
   }
+
+  const { user, logout } = useAuth()
 
   return (
     <div data-theme={theme}>
@@ -30,6 +40,8 @@ export default function App() {
         <Route path="/path/:id" element={<PathDetail />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/dashboard" element={<LearnerDashboard />} />
+        <Route path="/author-dashboard" element={<AuthorDashboard />} />
       </Routes>
     </div>
   )
