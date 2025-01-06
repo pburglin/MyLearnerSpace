@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
+import { config } from '../config'
 
 export function useProgress() {
   const [progress, setProgress] = useState({})
@@ -36,11 +37,11 @@ export function useProgress() {
       
       if (path) {
         // Points for completed items
-        learnerPoints += completedItems * 1
+        learnerPoints += completedItems * config.points.perItem
         
         // Points for completed paths
         if (completedItems === path.items.length) {
-          learnerPoints += 10
+          learnerPoints += config.points.perPathCompletion
         }
       }
     })
@@ -48,18 +49,18 @@ export function useProgress() {
     // Calculate author points
     paths.filter(p => p.author === username).forEach(path => {
       // Points for publishing path
-      authorPoints += 10
+      authorPoints += config.points.authorPerPublication
       
       // Points based on others' progress
       const pathProgress = progress[path.id] || {}
       const completedItems = Object.values(pathProgress).filter(Boolean).length
       
       // Points for completed items
-      authorPoints += completedItems * 1
+      authorPoints += completedItems * config.points.authorPerItemCompletion
       
       // Points for completed paths
       if (completedItems === path.items.length) {
-        authorPoints += 3
+        authorPoints += config.points.authorPerPathCompletion
       }
     })
 

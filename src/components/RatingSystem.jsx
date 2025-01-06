@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '../hooks/useAuth'
+import { config } from '../config'
 
 export default function RatingSystem({ pathId }) {
   const { user } = useAuth()
-  const [rating, setRating] = useState(0)
-  const [userRating, setUserRating] = useState(0)
+  const [rating, setRating] = useState(config.rating.default)
+  const [userRating, setUserRating] = useState(config.rating.default)
 
   useEffect(() => {
     const paths = JSON.parse(localStorage.getItem('learningPaths') || '[]')
     const path = paths.find(p => p.id === pathId)
     if (path) {
-      setRating(path.rating || 0)
+      setRating(path.rating || config.rating.default)
       if (user && path.ratings?.[user.username]) {
         setUserRating(path.ratings[user.username])
       }
@@ -48,7 +49,7 @@ export default function RatingSystem({ pathId }) {
     <div className="card p-4">
       <h3 className="text-lg font-semibold mb-2">Rate this path:</h3>
       <div className="flex items-center gap-1">
-        {[1, 2, 3, 4, 5].map(star => (
+        {Array.from({ length: config.rating.max }, (_, i) => i + 1).map(star => (
           <button
             key={star}
             className={`text-2xl ${

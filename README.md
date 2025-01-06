@@ -39,8 +39,8 @@ The Learning Experience Community Platform is designed to create an engaging env
 ### Local Development Setup
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/learning-platform.git
-   cd learning-platform
+   git clone https://github.com/pburglin/MyLearnerSpace.git
+   cd MyLearnerSpace
    ```
 
 2. Install dependencies:

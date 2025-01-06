@@ -12,11 +12,11 @@ import LearnerDashboard from './pages/LearnerDashboard'
 import AuthorDashboard from './components/AuthorDashboard'
 import ContentManagement from './components/ContentManagement'
 import { useAuth } from './hooks/useAuth'
+import { config } from './config'
 
 export default function App() {
   const [theme, setTheme] = useState(() => {
-    // Get theme from localStorage or default to 'light'
-    return localStorage.getItem('theme') || 'light'
+    return localStorage.getItem('theme') || config.defaultTheme
   })
 
   const toggleTheme = () => {
