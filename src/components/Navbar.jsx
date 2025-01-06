@@ -2,41 +2,55 @@ import { Link } from 'react-router-dom'
 
 export default function Navbar({ toggleTheme, user, logout }) {
   return (
-    <nav>
-      <div className="container">
-        <Link to="/">Learning Platform</Link>
+    <nav className="shadow-lg">
+      <div className="container flex justify-between items-center">
+        <Link to="/" className="text-xl font-bold">
+          Learning Platform
+        </Link>
+        
         <div className="nav-right">
-          <button onClick={toggleTheme}>Toggle Theme</button>
-          <Link to="/search" title="Search learning paths">
+          <button 
+            onClick={toggleTheme}
+            className="bg-secondary text-foreground px-4 py-2 rounded hover:bg-primary hover:text-white transition-colors"
+          >
+            Toggle Theme
+          </button>
+          
+          <Link to="/search" className="hover:text-primary">
             🔍 Search
           </Link>
-          <Link to="/leaderboard" title="View leaderboard">
+          
+          <Link to="/leaderboard" className="hover:text-primary">
             🏆 Leaderboard
           </Link>
+          
           {user ? (
             <>
-              <Link to="/dashboard" title="Your dashboard">
+              <Link to="/dashboard" className="hover:text-primary">
                 📊 Dashboard
               </Link>
-              <Link to="/author-dashboard" title="Author dashboard">
-                ✍️ Author Dashboard
+              <Link to="/content-management" className="hover:text-primary">
+                📝 Content
               </Link>
-              <Link to="/create-path" title="Create new learning path">
-                ➕ Create Path
+              <Link to="/create-path" className="hover:text-primary">
+                ➕ Create
               </Link>
-              <Link to={`/profile/${user.username}`} title="Your profile">
+              <Link to={`/profile/${user.username}`} className="hover:text-primary">
                 👤 Profile
               </Link>
-              <button onClick={logout} title="Logout">
-                🚪 Logout
+              <button 
+                onClick={logout}
+                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors"
+              >
+                Logout
               </button>
             </>
           ) : (
             <>
-              <Link to="/login" title="Login">
+              <Link to="/login" className="hover:text-primary">
                 🔑 Login
               </Link>
-              <Link to="/register" title="Register">
+              <Link to="/register" className="hover:text-primary">
                 📝 Register
               </Link>
             </>

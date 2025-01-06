@@ -10,6 +10,7 @@ import PathDetail from './pages/PathDetail'
 import Search from './components/Search'
 import LearnerDashboard from './pages/LearnerDashboard'
 import AuthorDashboard from './components/AuthorDashboard'
+import ContentManagement from './components/ContentManagement'
 import { useAuth } from './hooks/useAuth'
 
 export default function App() {
@@ -42,6 +43,7 @@ export default function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/dashboard" element={<LearnerDashboard />} />
         <Route path="/author-dashboard" element={<AuthorDashboard />} />
+        <Route path="/content-management" element={<ContentManagement />} />
       </Routes>
     </div>
   )

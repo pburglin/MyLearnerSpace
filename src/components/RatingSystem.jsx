@@ -45,22 +45,28 @@ export default function RatingSystem({ pathId }) {
   }
 
   return (
-    <div className="rating-system">
-      <h3>Rate this path:</h3>
-      <div className="stars">
+    <div className="card p-4">
+      <h3 className="text-lg font-semibold mb-2">Rate this path:</h3>
+      <div className="flex items-center gap-1">
         {[1, 2, 3, 4, 5].map(star => (
           <button
             key={star}
-            className={`star ${star <= (userRating || rating) ? 'active' : ''}`}
+            className={`text-2xl ${
+              star <= (userRating || rating) 
+                ? 'text-yellow-400' 
+                : 'text-gray-300'
+            } hover:text-yellow-400 transition-colors`}
             onClick={() => handleRate(star)}
             title={`Rate ${star} star${star > 1 ? 's' : ''}`}
             disabled={!user}
           >
-            ⭐
+            ★
           </button>
         ))}
       </div>
-      <p>Current rating: {rating.toFixed(1)}</p>
+      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+        Current rating: {rating.toFixed(1)} ({Object.keys(path.ratings || {}).length} ratings)
+      </p>
     </div>
   )
 }

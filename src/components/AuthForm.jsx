@@ -21,30 +21,46 @@ export default function AuthForm({ type }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>{type === 'login' ? 'Login' : 'Register'}</h2>
-      {error && <div className="error">{error}</div>}
-      <div>
-        <label>Username:</label>
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-          minLength={3}
-        />
-      </div>
-      <div>
-        <label>Password:</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          minLength={6}
-        />
-      </div>
-      <button type="submit">{type === 'login' ? 'Login' : 'Register'}</button>
-    </form>
+    <div className="max-w-md mx-auto mt-8 p-6 bg-secondary rounded-lg shadow">
+      <h2 className="text-2xl font-bold mb-6 text-center">
+        {type === 'login' ? 'Login' : 'Register'}
+      </h2>
+      
+      {error && (
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+          {error}
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="form-group">
+          <label>Username:</label>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            minLength={3}
+            className="w-full"
+          />
+        </div>
+        
+        <div className="form-group">
+          <label>Password:</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            minLength={6}
+            className="w-full"
+          />
+        </div>
+        
+        <button type="submit" className="w-full bg-primary text-white py-2 rounded hover:bg-primary-hover">
+          {type === 'login' ? 'Login' : 'Register'}
+        </button>
+      </form>
+    </div>
   )
 }
